@@ -1,19 +1,24 @@
 package com.api.rest.dto;
 
-import jakarta.persistence.Column;
+import com.api.rest.models.C_Rol_Model;
+import com.api.rest.models.C_Usuario_Model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+
+@Getter
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Builder
+@FieldDefaults(makeFinal = true)
 public class C_Usuario_Dto {
+
     @NotBlank(message = "El nombre no puede ser vació o nulo")
     @Size(min = 2, max = 40, message = "El nombre debe tener entre 2 y 40 caracteres")
     String nombres;
@@ -23,7 +28,7 @@ public class C_Usuario_Dto {
     String apellidos;
 
     @NotBlank(message = "El nombre de usuario no puede ser vació o nulo")
-    @Size(min = 2, max = 40, message = "El nombre de usuario debe tener entre 2 y 40 caracteres")
+    @Size(min = 2, max = 40)
     String nombreUsuario;
 
     @NotBlank(message = "La contraseña no puede ser vació o nulo")
@@ -35,4 +40,6 @@ public class C_Usuario_Dto {
     @NotBlank(message = "El correo no puede ser vació o nulo")
     @Email
     String correo;
+
+
 }
