@@ -46,8 +46,10 @@ public class C_Usuario_Model {
     @Email
     String correo;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "usuario")
-    @NotEmpty(message = "El usuario debe tener al menos un rol")
-    @JsonIgnore
-    Set<C_Usuario_Rol_Model> roles;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = C_Rol_Model.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "usuarios_roles",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    Set<C_Rol_Model> roles;
 }

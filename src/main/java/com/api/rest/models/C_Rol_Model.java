@@ -23,7 +23,4 @@ public class C_Rol_Model {
     @Enumerated(EnumType.STRING)
     @Column(unique = true, name = "nombre_rol")
     E_Rol_Util nombreRol;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "rol")
-    Set<C_Usuario_Rol_Model> usuarios;
 }
