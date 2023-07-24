@@ -4,7 +4,5 @@ public enum E_Rol_Util {
     ADMINISTRADOR,
     USUARIO,
     INVITADO,
-    ANONIMO,
-    SUPER_ADMINISTRADOR
 }
 

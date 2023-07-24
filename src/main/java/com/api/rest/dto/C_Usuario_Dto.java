@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
@@ -16,8 +17,11 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @Builder
-@FieldDefaults(makeFinal = true)
+@FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
+@ToString
 public class C_Usuario_Dto {
+
+    Long ide;
 
     @NotBlank(message = "El nombre no puede ser vació o nulo")
     @Size(min = 2, max = 40, message = "El nombre debe tener entre 2 y 40 caracteres")
@@ -41,5 +45,5 @@ public class C_Usuario_Dto {
     @Email
     String correo;
 
-
+    Set<C_Rol_Model> roles;
 }

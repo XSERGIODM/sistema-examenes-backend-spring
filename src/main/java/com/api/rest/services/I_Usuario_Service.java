@@ -9,5 +9,13 @@ public interface I_Usuario_Service {
 
     C_Usuario_Model obtenerUsuarioIde(Long ide);
 
-    C_Usuario_Model obtenerUsuarioNombreUsuarioCorreo(String nombreUsuarioCorreo);
+    C_Usuario_Model obtenerUsuarioNombreUsuarioCorreo(String usuarioCorreo);
+
+    C_Usuario_Model crearUsuario(C_Usuario_Model usuarioDto);
+
+    C_Usuario_Model actualizarUsuario(C_Usuario_Model usuarioModel);
+
+    void eliminarUsuario(Long ide);
+
+    boolean existeUsuarioCorreo(String usuario, String correo);
 }

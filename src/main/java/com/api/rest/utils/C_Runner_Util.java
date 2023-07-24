@@ -12,9 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -30,17 +28,6 @@ public class C_Runner_Util implements CommandLineRunner {
     @Override
     public void run(String... args) {
         llenarRoles();
-        C_Usuario_Model usuarioModel = usuarioRepository.findByNombreUsuarioOrCorreo("admin", "admin@admin.com");
-        if (usuarioModel == null) {
-            llenarUsuarios();
-        } else {
-            Set<C_Rol_Model> roles = new HashSet<>();
-            roles.add(rolRepository.findByNombreRol(E_Rol_Util.ADMINISTRADOR));
-            roles.add(rolRepository.findByNombreRol(E_Rol_Util.USUARIO));
-            roles.add(rolRepository.findByNombreRol(E_Rol_Util.USUARIO));
-            usuarioModel.getRoles().addAll(roles);
-            usuarioRepository.save(usuarioModel);
-        }
     }
 
     private void llenarRoles() {
@@ -68,7 +55,7 @@ public class C_Runner_Util implements CommandLineRunner {
                 .apellidos("admin")
                 .build();
 
-        if (!usuarioRepository.existsByNombreUsuarioOrCorreo(usuarioDto.getNombreUsuario(), usuarioDto.getCorreo())) {
+        if (usuarioRepository.existsByNombreUsuarioOrCorreo(usuarioDto.getNombreUsuario(), usuarioDto.getCorreo())) {
             C_Usuario_Model usuarioModel = C_Usuario_Model.builder()
                     .nombreUsuario(usuarioDto.getNombreUsuario())
                     .contrasenia(usuarioDto.getContrasenia())
@@ -79,7 +66,7 @@ public class C_Runner_Util implements CommandLineRunner {
 
             usuarioRepository.save(usuarioModel);
 
-            C_Rol_Model rolModel = rolRepository.findByNombreRol(E_Rol_Util.ANONIMO);
+            C_Rol_Model rolModel = rolRepository.findByNombreRol(E_Rol_Util.INVITADO);
             Set<C_Rol_Model> roles = new HashSet<>();
             roles.add(rolModel);
 

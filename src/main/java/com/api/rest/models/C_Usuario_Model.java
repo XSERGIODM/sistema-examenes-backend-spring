@@ -18,6 +18,7 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@ToString
 @Entity(name = "usuarios")
 public class C_Usuario_Model {
 
@@ -54,5 +55,5 @@ public class C_Usuario_Model {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
-    Set<C_Rol_Model> roles = new HashSet<>();
+    Set<C_Rol_Model> roles;
 }

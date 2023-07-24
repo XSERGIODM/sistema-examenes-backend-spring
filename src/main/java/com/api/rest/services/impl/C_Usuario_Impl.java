@@ -1,6 +1,5 @@
 package com.api.rest.services.impl;
 
-import com.api.rest.dto.C_Usuario_Dto;
 import com.api.rest.models.C_Usuario_Model;
 import com.api.rest.repositories.I_Usuario_repository;
 import com.api.rest.services.I_Usuario_Service;
@@ -31,7 +30,27 @@ public class C_Usuario_Impl implements I_Usuario_Service {
     }
 
     @Override
-    public C_Usuario_Model obtenerUsuarioNombreUsuarioCorreo(String nombreUsuarioCorreo) {
-        return usuarioRepository.findByNombreUsuarioOrCorreo(nombreUsuarioCorreo, nombreUsuarioCorreo);
+    public C_Usuario_Model obtenerUsuarioNombreUsuarioCorreo(String usuarioCorreo) {
+        return usuarioRepository.findByNombreUsuarioOrCorreo(usuarioCorreo, usuarioCorreo);
+    }
+
+    @Override
+    public C_Usuario_Model crearUsuario(C_Usuario_Model usuarioModel) {
+        return usuarioRepository.save(usuarioModel);
+    }
+
+    @Override
+    public C_Usuario_Model actualizarUsuario(C_Usuario_Model usuarioModel) {
+        return usuarioRepository.save(usuarioModel);
+    }
+
+    @Override
+    public void eliminarUsuario(Long ide) {
+        usuarioRepository.deleteById(ide);
+    }
+
+    @Override
+    public boolean existeUsuarioCorreo(String usuario, String correo) {
+        return usuarioRepository.existsByNombreUsuarioOrCorreo(usuario, correo);
     }
 }
